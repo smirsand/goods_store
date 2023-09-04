@@ -33,6 +33,7 @@ def card_product(request, pk):
         'title': f'Карточка товара - {category_item.product_name}',
         'description': category_item.description,
         'price': category_item.price,
+        'image': category_item.image
     }
 
     return render(request, 'main_app/card_product.html', context)
