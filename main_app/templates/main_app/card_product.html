@@ -9,8 +9,9 @@
                 <div class="card mb-4 box-shadow">
                     <div class="card-body">
                         <img class="card-img-top"
-                             src="{% mediapath object.image %}"
-                             alt="Card image cap"/>
+                             src="{{ image|mediapath }}"
+                             alt="Card image cap"
+                             style="width: 150px; height: 150px;"/>
                         <p class="card-text">Цена: </p>
                         <p class="card-text">{{price}}</p>
                         <p class="card-text">Описание товара</p>
