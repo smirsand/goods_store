@@ -27,16 +27,3 @@ class CardDetailView(DetailView):
     model = Product
     template_name = 'main_app/card_product.html'
     extra_context = {'title': 'Карточка товара'}
-
-
-# def card_product(request, pk):
-#     category_item = Product.objects.get(pk=pk)
-#     context = {
-#         'object_list': Product.objects.filter(category=pk),
-#         'title': f'Карточка товара - {category_item.product_name}',
-#         'description': category_item.description,
-#         'price': category_item.price,
-#         'image': category_item.image
-#     }
-#
-#     return render(request, 'main_app/card_product.html', context)
