@@ -11,6 +11,10 @@
                 <div class="card mb-4 box-shadow">
                     <a class="btn btn-outline-primary" href="{% url 'blog_app:view' slug=object.slug %}">Открыть
                         карточку</a>
+                    <a class="btn btn-outline-primary" href="{% url 'blog_app:edit' slug=object.slug %}">Редактировать
+                        карточку</a>
+                    <a class="btn btn-outline-primary" href="{% url 'blog_app:delete' slug=object.slug %}">Удалить
+                        карточку</a>
                     <div class="card-body">
                         <p class="card-text">{{ object }}</p>
                         <div class="d-flex justify-content-between align-items-center">
