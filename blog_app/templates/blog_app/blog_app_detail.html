@@ -1,0 +1,27 @@
+{% extends 'main_app/base.html' %}
+{% load my_tags %}
+{% block content %}
+<!doctype html>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <p class="card-text">{{object}} ({{ object.slug}})</p>
+            <p class="card-text">{{object.content}}</p>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <div class="btn-group">
+                            <p>
+                                {{object.body}}
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            Просмотры: {{ object.number_of_views }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
