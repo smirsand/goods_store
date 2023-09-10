@@ -5,16 +5,18 @@
 <div class="album py-5 bg-light">
     <div class="container">
         <div class="row">
-            <p class="card-text">{{object}}</p>
+            <p class="card-text">{{object}} ({{ object.slug}})</p>
             <p class="card-text">{{object.content}}</p>
             <div class="col-md-4">
                 <div class="card mb-4 box-shadow">
                     <div class="card-body">
                         <div class="btn-group">
-                            <a href="#" type="button" class="btn btn-sm btn-outline-secondary">Удалить статью</a>
                             <p>
                                 {{object.body}}
                             </p>
+                        </div>
+                        <div class="card-footer">
+                            Просмотры: {{ object.number_of_views }}
                         </div>
                     </div>
                 </div>
