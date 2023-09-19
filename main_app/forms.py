@@ -21,5 +21,4 @@ class ProductForm(forms.ModelForm):
         for word in words:
             if word == cleaned_data:
                 raise forms.ValidationError('Запрещенное слово! Выберите другое слово.')
-
         return cleaned_data
