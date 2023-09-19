@@ -18,7 +18,8 @@
                         <p class="card-text">Описание товара</p>
                         <p class="card-text">{{object.description}}</p>
                         <div class="btn-group">
-                            <a href="#" type="button" class="btn btn-sm btn-outline-secondary">В корзину</a>
+                            <a href="{% url 'main_app:update_product' object.pk %}" type="button"
+                               class="btn btn-sm btn-outline-secondary">Внести изменения</a>
                         </div>
                     </div>
                 </div>

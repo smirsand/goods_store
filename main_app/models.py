@@ -25,9 +25,24 @@ class Product(models.Model):
     date_of_change = models.DateTimeField(**NULLABLE, verbose_name='Дата изменения')
 
     def __str__(self):
-        return f'{self.product_name}, {self.price}, {self.description}'
+        return f'{self.product_name}, {self.price}'
 
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
         ordering = ('product_name',)
+
+
+class Version(models.Model):
+    product = models.ForeignKey(Product, verbose_name='продукт', on_delete=models.CASCADE)
+    version_number = models.TextField(verbose_name='номер версии')
+    version_name = models.TextField(verbose_name='название версии')
+    version_flag = models.BooleanField(verbose_name='признак текущей версии')
+
+    def __str__(self):
+        return f'{self.product}, {self.version_number}, {self.version_name}, {self.version_flag}'
+
+    class Meta:
+        verbose_name = 'версия'
+        verbose_name_plural = 'версии'
+        ordering = ('product',)

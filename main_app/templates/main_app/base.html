@@ -2,6 +2,10 @@
 <!doctype html>
 <html lang="en">
 <head>
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% bootstrap_messages %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ title }}</title>
@@ -11,16 +15,8 @@
     <link href="{% static 'css/album.css' %}" rel="stylesheet">
 </head>
 
-<header data-bs-theme="dark">
-    <div class="collapse text-bg-dark" id="navbarHeader">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8 col-md-7 py-4">
-                </div>
-                {% include 'main_app/includes/inc_main_app_menu.html' %}
-            </div>
-        </div>
-    </div>
+<header>
+    {% include 'main_app/includes/inc_main_app_menu.html' %}
 </header>
 
 <main>

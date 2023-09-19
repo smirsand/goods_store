@@ -1,35 +1,34 @@
 {% extends 'main_app/base.html' %}
 {% load my_tags %}
 {% block content %}
-<!doctype html>
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row">
-            {% for object in object_list %}
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top"
-                         src="{{ object.image|mediapath }}"
-                         src="{% mediapath object.image %}"
-                         alt="Card image cap"
-                         style="width: 150px; height: 150px;">
-                    <div class="card-body">
-                        <p class="card-text">{{object.product_name|title}}</p>
-                        <p class="card-text">{{object.price}}</p>
-                        <p class="card-text">{{object.description|truncatechars:100}}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button"
-                                        onclick="window.location.href='{% url 'main_app:card_product' object.pk %}'"
-                                        class="btn btn-outline-secondary">Карточка товара
-                                </button>
-                            </div>
-                        </div>
+<div class="col-12 mb-5">
+    <a class="btn btn-outline-primary" href="{% url 'main_app:create_product' %}">
+        Добавить продукт
+    </a>
+    <div/>
+    {% for object in object_list %}
+    <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+            <img class="card-img-top"
+                 src="{{ object.image|mediapath }}"
+                 src="{% mediapath object.image %}"
+                 alt="Card image cap"
+                 style="width: 150px; height: 150px;">
+            <div class="card-body">
+                <p class="card-text">{{object.product_name|title}}</p>
+                <p class="card-text">{{object.price}}</p>
+                <p class="card-text">{{object.description|truncatechars:100}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button"
+                                onclick="window.location.href='{% url 'main_app:card_product' object.pk %}'"
+                                class="btn btn-outline-secondary">Карточка товара
+                        </button>
                     </div>
                 </div>
-                {% endfor %}
             </div>
         </div>
     </div>
+    {% endfor %}
 </div>
 {% endblock %}
