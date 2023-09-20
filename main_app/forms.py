@@ -4,6 +4,7 @@ from main_app.models import Product, Version
 
 
 class ProductForm(forms.ModelForm):
+    """Форма создания и редактирования карточки продукта."""
     class Meta:
         model = Product
         # fields = ('product_name', 'description', 'price', 'category', 'image')
@@ -26,6 +27,8 @@ class ProductForm(forms.ModelForm):
 
 
 class VersionForm(forms.ModelForm):
+    """Форма версии продукта."""
+
     class Meta:
         model = Version
         fields = '__all__'
