@@ -8,18 +8,23 @@ from main_app.models import Category, Product, Version
 
 
 class CategoryListView(ListView):
+    """Контроллер списка категорий продуктов."""
+
     model = Category
     template_name = 'main_app/home.html'
     extra_context = {'title': 'Главная'}
 
 
 class ProductListView(ListView):
+    """Контроллер списка продуктов."""
+
     model = Product
     template_name = 'main_app/product_page.html'
     extra_context = {'title': 'Продукты'}
 
 
 def contact(request):
+    """Контроллер контактов."""
     context = {
         'title': 'Контакты'
     }
@@ -27,12 +32,16 @@ def contact(request):
 
 
 class CardDetailView(DetailView):
+    """Контроллер удаления карточки товара."""
+
     model = Product
     template_name = 'main_app/card_product.html'
     extra_context = {'title': 'Карточка товара'}
 
 
 class ProductCreateView(CreateView):
+    """Контроллер создания товара."""
+
     model = Product
     form_class = ProductForm
     template_name = 'main_app/product_form.html'
@@ -40,6 +49,8 @@ class ProductCreateView(CreateView):
 
 
 class ProductUpdateView(UpdateView):
+    """Контроллер редактирования товара."""
+
     model = Product
     form_class = ProductForm
     template_name = 'main_app/product_form.html'
