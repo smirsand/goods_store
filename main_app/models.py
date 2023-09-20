@@ -4,6 +4,8 @@ NULLABLE = {'blank': True, 'null': True}
 
 
 class Category(models.Model):
+    """Модель категории продуктов."""
+
     name_category = models.CharField(max_length=100, verbose_name='наименование категории')
     description_category = models.TextField(verbose_name='описание категории', **NULLABLE)
 
@@ -16,6 +18,8 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """Модель продукта."""
+
     product_name = models.CharField(max_length=100, verbose_name='наименование продукта')
     description = models.TextField(verbose_name='описание продукта', **NULLABLE)
     image = models.ImageField(upload_to='image/', verbose_name='изображение', **NULLABLE)
@@ -34,6 +38,8 @@ class Product(models.Model):
 
 
 class Version(models.Model):
+    """Версия продукта."""
+
     product = models.ForeignKey(Product, verbose_name='продукт', on_delete=models.CASCADE)
     version_number = models.TextField(verbose_name='номер версии')
     version_name = models.TextField(verbose_name='название версии')
