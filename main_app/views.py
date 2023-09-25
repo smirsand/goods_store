@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -39,7 +40,7 @@ class CardDetailView(DetailView):
     extra_context = {'title': 'Карточка товара'}
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     """Контроллер создания товара."""
 
     model = Product
@@ -47,8 +48,12 @@ class ProductCreateView(CreateView):
     template_name = 'main_app/product_form.html'
     success_url = reverse_lazy('main_app:product_page')
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
-class ProductUpdateView(UpdateView):
+
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     """Контроллер редактирования товара."""
 
     model = Product
