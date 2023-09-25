@@ -1,6 +1,7 @@
 import random
 
 from django.conf import settings
+from django.contrib.auth.views import PasswordResetView
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
@@ -47,3 +48,8 @@ def generate_new_password(request):
     request.user.set_password(new_password)
     request.user.save()
     return redirect(reverse('main_app:home'))
+
+
+class PassResetView(PasswordResetView):
+    template_name = 'users/password_reset_email.html'
+    success_url = reverse_lazy("users:login")
