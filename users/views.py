@@ -19,7 +19,7 @@ class LoginView(BaseLoginView):
 
 class LogoutView(BaseLogoutView):
     template_name = 'users/login.html'
-    success_url = reverse_lazy("users:login")
+    success_url = reverse_lazy("main_app:home")
 
 
 class RegisterView(CreateView):
