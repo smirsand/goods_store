@@ -1,6 +1,8 @@
 import random
 
 from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth.views import LoginView as BaseLogoutView
 from django.core.mail import send_mail
@@ -61,6 +63,18 @@ def generate_new_password(request):
     return redirect(reverse('main_app:home'))
 
 
-# class ResetPasswordView(PasswordResetView):
-#     template_name = 'users/password_reset_email.html'
-#     success_url = reverse_lazy("users:login")
+class ResetPasswordView(PasswordResetForm):
+    template_name = 'users/password_reset_email.html'
+    success_url = reverse_lazy("users:login")
+
+    def form_valid(self, form):
+        email = form.cleaned_data.get('email')
+
+        User = get_user_model()
+        user = User.objects.get(email=email)
+        new_password = User.objects.make_random_password()
+        user.set_password(new_password)
+        user.save()
+        generate_new_password(self.request)
+
+        return redirect(self.success_url)
