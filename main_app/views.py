@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
+
 from main_app.forms import ProductForm, VersionForm
 from main_app.models import Category, Product, Version
 
@@ -78,6 +79,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         self.object = form.save()
 
         if formset.is_valid():
+            form.instance.user = self.request.user
             formset.instance = self.object
             formset.save()
         return super().form_valid(form)
