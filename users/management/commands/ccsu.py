@@ -14,7 +14,7 @@ class Command(BaseCommand):
             last_name='Smirnov',
             is_staff=True,
             is_superuser=True,
-            is_activ=True
+            is_active=True
         )
 
         user.set_password('2721896')
