@@ -6,12 +6,13 @@ from users.models import User
 
 
 class UserRegisterForm(VersionForm, UserCreationForm):
+
     class Meta:
         model = User
         fields = ('email', 'password1', 'password2')
 
 
-class UserProfileForm(VersionForm, UserChangeForm):
+class UserForm(VersionForm, UserChangeForm):
     class Meta:
         model = User
         fields = ('email', 'password', 'first_name', 'last_name', 'country', 'phone', 'avatar')
