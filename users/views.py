@@ -1,7 +1,8 @@
 import random
 
 from django.conf import settings
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.views import LoginView as BaseLoginView, PasswordResetView
+from django.contrib.auth.views import LoginView as BaseLogoutView
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
@@ -9,6 +10,14 @@ from django.views.generic import CreateView, UpdateView
 
 from users.forms import UserRegisterForm, UserProfileForm
 from users.models import User
+
+
+class LoginView(BaseLoginView):
+    pass
+
+
+class LogoutView(BaseLogoutView):
+    pass
 
 
 class RegisterView(CreateView):
@@ -50,6 +59,6 @@ def generate_new_password(request):
     return redirect(reverse('main_app:home'))
 
 
-class PassResetView(PasswordResetView):
+class ResetPasswordView(PasswordResetView):
     template_name = 'users/password_reset_email.html'
     success_url = reverse_lazy("users:login")
