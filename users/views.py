@@ -8,7 +8,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView
 
-from users.forms import UserRegisterForm, UserProfileForm
+from users.forms import UserRegisterForm, UserForm
 from users.models import User
 
 
@@ -19,6 +19,7 @@ class LoginView(BaseLoginView):
 
 class LogoutView(BaseLogoutView):
     template_name = 'users/login.html'
+    success_url = reverse_lazy("users:login")
 
 
 class RegisterView(CreateView):
@@ -38,10 +39,10 @@ class RegisterView(CreateView):
         return super().form_valid(form)
 
 
-class ProfileView(UpdateView):
+class UserUpdateView(UpdateView):
     model = User
-    form_class = UserProfileForm
     success_url = reverse_lazy("users:profile")
+    form_class = UserForm
 
     def get_object(self, queryset=None):  # Для редактирования текущего пользователя.
         return self.request.user
