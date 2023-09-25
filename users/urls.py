@@ -1,5 +1,5 @@
 from django.urls import path
-
+from django.contrib.auth.views import PasswordResetView
 from users.apps import UsersConfig
 from users.views import RegisterView, UserUpdateView, generate_new_password, LoginView, LogoutView
 
@@ -17,5 +17,5 @@ urlpatterns = [
 
     path('profile/genpassword/', generate_new_password, name='generate_new_password'),
 
-    # path('password_reset/', ResetPasswordView.as_view(), name='password_reset'),
+    path('password_reset/', PasswordResetView.as_view(), name='password_reset'),
 ]
