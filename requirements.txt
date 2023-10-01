@@ -4,3 +4,5 @@ pillow
 ipython
 pytils
 django-bootstrap5
+redis
+python-dotenv
