@@ -4,9 +4,9 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
-
 from main_app.forms import ProductForm, VersionForm
 from main_app.models import Category, Product, Version
+from main_app.services import get_categories_cache
 
 
 class CategoryListView(ListView):
@@ -15,6 +15,12 @@ class CategoryListView(ListView):
     model = Category
     template_name = 'main_app/home.html'
     extra_context = {'title': 'Главная'}
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        get_categories_cache(self)
+        context_data['categories'] = get_categories_cache(self)
+        return context_data
 
 
 class ProductListView(ListView):
@@ -34,7 +40,7 @@ def contact(request):
 
 
 class CardDetailView(DetailView):
-    """Контроллер удаления карточки товара."""
+    """Контроллер просмотра карточки товара."""
 
     model = Product
     template_name = 'main_app/card_product.html'
