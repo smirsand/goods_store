@@ -34,7 +34,7 @@ def contact(request):
 
 
 class CardDetailView(DetailView):
-    """Контроллер удаления карточки товара."""
+    """Контроллер просмотра карточки товара."""
 
     model = Product
     template_name = 'main_app/card_product.html'
